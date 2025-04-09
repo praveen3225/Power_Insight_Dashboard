@@ -1,0 +1,27 @@
+.card-body{
+    width: 390px;
+    height: 260px;
+    margin-left: 3.5vw;
+    border-radius: 10px;
+    padding: 2px 2px;
+}
+
+.card-body-upper{
+    width: 100%;
+    height: 48%;
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px 0px 0px 10px;
+}
+
+.card-body-lower{
+    padding: 10px 0px 0px 10px;
+}
+
+.values{
+    padding-left: 1px;
+    padding-top: 10px;
+}
+
+.values-h3{
+    color: white;
+}

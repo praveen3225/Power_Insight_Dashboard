@@ -1,0 +1,6 @@
+.title-row-1{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 35px 1.4vw 25px 3.7vw;
+    display: flex;
+    justify-content: space-between;
+}

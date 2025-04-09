@@ -1,0 +1,6 @@
+.expense-tracker-row{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 20px;
+    justify-content: space-evenly;
+}
