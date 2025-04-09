@@ -300,12 +300,12 @@ function App() {
 
   return (
     <>
-      <div style={{ position: "relative" }}>
+      
         <Header />
-        <div style={{ position: "absolute", zIndex: "-1" }}>
+        <div style={{ position: "absolute", zIndex: "-1" ,width:"-webkit-fill-available"}}>
           <Sidebar />
-        </div>
-      </div>
+        
+     
 
       <Title onDeviceSelect={setSelectedDevice} />
       <ExpenseTracker details={summary} />
@@ -348,6 +348,7 @@ function App() {
         <div style={{ marginRight: "20px", width: "480px", paddingTop: '20px' }}>
           <PowerFactorGraph data={powerFactorData[selectedDevice] || []} />
         </div>
+      </div>
       </div>
     </>
   );

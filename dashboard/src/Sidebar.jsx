@@ -5,7 +5,7 @@ function Sidebar()
 {
     return (
         <>
-            <div className="column-tab">
+            <div className="column-tab" style={{ position:"absolute"}}>
             </div>
         </>
     )

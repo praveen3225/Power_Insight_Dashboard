@@ -13,18 +13,30 @@ import { Lightning } from "react-bootstrap-icons";
 const VoltageGraph = ({ data }) => {
   const [selected, setSelected] = useState("v1");
 
-  const renderLines = () => {
-    switch (selected) {
-      case "v1":
-        return <Line type="monotone" dataKey="volt1" stroke="#FFD700" strokeWidth={2} dot={false} />;
-      case "v2":
-        return <Line type="monotone" dataKey="volt2" stroke="#FFA500" strokeWidth={2} dot={false} />;
-      case "v3":
-        return <Line type="monotone" dataKey="volt3" stroke="#FF4500" strokeWidth={2} dot={false} />;
-      default:
-        return null;
-    }
+  const lineDefs = {
+    v1: ["volt1"],
+    v2: ["volt2"],
+    v3: ["volt3"],
+    all: ["volt1", "volt2", "volt3"],
   };
+
+  const lineColors = {
+    volt1: "#FFD700", // Gold
+    volt2: "#FFA500", // Orange
+    volt3: "#FF4500", // OrangeRed
+  };
+
+  const renderLines = () =>
+    lineDefs[selected].map((key) => (
+      <Line
+        key={key}
+        type="monotone"
+        dataKey={key}
+        stroke={lineColors[key]}
+        strokeWidth={2}
+        dot={false}
+      />
+    ));
 
   return (
     <div style={{ backgroundColor: "#0B0B0B", borderRadius: "12px", padding: "1rem", color: "white" }}>
@@ -33,11 +45,10 @@ const VoltageGraph = ({ data }) => {
           <Lightning color="white" />
           <h5 style={{ margin: 0 }}>Voltage (V)</h5>
         </div>
-        <div></div>
       </div>
 
       <div style={{ margin: "10px 0", display: "flex", gap: "0.5rem" }}>
-        {["v1", "v2", "v3"].map((type) => (
+        {["v1", "v2", "v3", "all"].map((type) => (
           <button
             key={type}
             onClick={() => setSelected(type)}
@@ -59,7 +70,7 @@ const VoltageGraph = ({ data }) => {
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="ts" hide />
-          <YAxis domain={['dataMin - 5', 'dataMax + 5']} />
+          <YAxis domain={["auto", "auto"]} />
           <Tooltip
             contentStyle={{
               backgroundColor: "#1a1a1a",
@@ -71,8 +82,6 @@ const VoltageGraph = ({ data }) => {
             itemStyle={{ color: "#fff" }}
             labelFormatter={(label) => new Date(label).toLocaleString()}
           />
-
-
           {renderLines()}
         </LineChart>
       </ResponsiveContainer>

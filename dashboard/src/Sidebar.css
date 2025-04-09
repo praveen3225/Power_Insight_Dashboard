@@ -1,6 +1,6 @@
 .column-tab{
     width: 3.5vw;
-    height: 250vh;
+    height: -webkit-fill-available;
     margin: 0px;
     padding: 0px;
     background-color: #000000;

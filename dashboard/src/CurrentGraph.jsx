@@ -13,18 +13,30 @@ import { Activity } from "react-bootstrap-icons";
 const CurrentGraph = ({ data }) => {
   const [selected, setSelected] = useState("a1");
 
-  const renderLines = () => {
-    switch (selected) {
-      case "a1":
-        return <Line type="monotone" dataKey="current1" stroke="#00FF7F" strokeWidth={2} dot={false} />;
-      case "a2":
-        return <Line type="monotone" dataKey="current2" stroke="#00CED1" strokeWidth={2} dot={false} />;
-      case "a3":
-        return <Line type="monotone" dataKey="current3" stroke="#1E90FF" strokeWidth={2} dot={false} />;
-      default:
-        return null;
-    }
+  const lineDefs = {
+    a1: ["current1"],
+    a2: ["current2"],
+    a3: ["current3"],
+    all: ["current1", "current2", "current3"],
   };
+
+  const lineColors = {
+    current1: "#00FF7F",
+    current2: "#00CED1",
+    current3: "#1E90FF",
+  };
+
+  const renderLines = () =>
+    lineDefs[selected].map((key) => (
+      <Line
+        key={key}
+        type="monotone"
+        dataKey={key}
+        stroke={lineColors[key]}
+        strokeWidth={2}
+        dot={false}
+      />
+    ));
 
   return (
     <div style={{ backgroundColor: "#0B0B0B", borderRadius: "12px", padding: "1rem", color: "white" }}>
@@ -33,11 +45,10 @@ const CurrentGraph = ({ data }) => {
           <Activity color="white" />
           <h5 style={{ margin: 0 }}>Current (A)</h5>
         </div>
-        <div></div>
       </div>
 
       <div style={{ margin: "10px 0", display: "flex", gap: "0.5rem" }}>
-        {["a1", "a2", "a3"].map((type) => (
+        {["a1", "a2", "a3", "all"].map((type) => (
           <button
             key={type}
             onClick={() => setSelected(type)}
@@ -59,7 +70,7 @@ const CurrentGraph = ({ data }) => {
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="ts" hide />
-          <YAxis domain={['dataMin - 1', 'dataMax + 1']} />
+          <YAxis domain={['auto', 'auto']} />
           <Tooltip
             contentStyle={{
               backgroundColor: "#1a1a1a",

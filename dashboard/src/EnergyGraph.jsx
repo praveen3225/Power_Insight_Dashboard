@@ -17,18 +17,24 @@ const CustomTooltip = ({ active, payload, label }) => {
       hour12: false,
     }).replace(',', '');
 
+    const value = payload[0].value;
     const labelName = payload[0].name === 'value' ? 'Energy' : 'Energy (Live)';
     const unit = 'kWh';
 
     return (
       <div style={{ backgroundColor: '#1e1e1e', padding: '8px', borderRadius: '4px', color: 'white' }}>
         <p>{formattedTime}</p>
-        <p>{`${labelName}: ${payload[0].value.toFixed(2)} ${unit}`}</p>
+        <p>
+          {`${labelName}: ${
+            typeof value === 'number' ? value.toFixed(2) : 'N/A'
+          } ${unit}`}
+        </p>
       </div>
     );
   }
   return null;
 };
+
 
 const EnergyGraph = ({ data }) => {
   // 🧠 Determine format type based on keys
