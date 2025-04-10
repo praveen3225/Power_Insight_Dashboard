@@ -60,18 +60,29 @@ public class SummaryService {
         Query query = new Query();
         query.addCriteria(Criteria.where("ts").gte(from).lte(to));
         query.with(Sort.by(Sort.Direction.ASC, "ts"));
-
         query.fields().include("ts").include("params");
 
         List<Document> docs = mongoTemplate.find(query, Document.class, "mqtt_messages");
-
         if (docs.isEmpty()) return 0.0;
 
-        Double first = extractEnergy(docs.get(0), deviceId);
-        Double last = extractEnergy(docs.get(docs.size() - 1), deviceId);
+        Double first = null;
+        Double last = null;
+
+        // Find the first non-null energy value
+        for (Document doc : docs) {
+            first = extractEnergy(doc, deviceId);
+            if (first != null) break;
+        }
+
+        // Find the last non-null energy value (traverse from end)
+        for (int i = docs.size() - 1; i >= 0; i--) {
+            last = extractEnergy(docs.get(i), deviceId);
+            if (last != null) break;
+        }
 
         return (first != null && last != null) ? last - first : 0.0;
     }
+
 
     private Double extractEnergy(Document doc, String deviceId) {
         Document params = (Document) doc.get("params");
