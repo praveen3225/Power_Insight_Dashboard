@@ -39,10 +39,11 @@ PROGRESS SUMMARY:
 FUTURE TASK:
 ************
 1. Integrate time-based filtering (minute, hourly, daily, monthly, and yearly) in the frontend using the 
-   `TimeModeSelector` component.
+   `TimeModeSelector` component. (Using the TimeModeSelector component within the GraphTitle component).
 
 2. Extend the backend logic to support time-based data aggregation for each metric, allowing historical data to 
-   be viewed across various time ranges.
+   be viewed across various time ranges. (Using the time-input component in App component to aggregate data based
+   on certain date and time).
 
 PROBLEMS FACED:
 ***************
