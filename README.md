@@ -40,6 +40,49 @@ Power_Insight_Dashboard/
  - screenshots/  
  - progress.txt  
 
+## 🛠️ Setup Instructions
+
+### Download and Extract the Project
+
+- Download the ZIP file of this repository.
+- Extract it to your preferred location.
+
+### Start MongoDB
+
+- Ensure MongoDB is installed and the service is running **before** starting the backend.
+
+### Run the Spring Boot Backend
+
+- Open Eclipse or your preferred Java IDE.
+- Import the `demo` folder as a Maven project.
+- Run `DemoApplication.java` to start the backend server.
+- Backend will auto-create the necessary MongoDB collections on first run.
+
+### Start the React Frontend
+
+- Open a terminal and navigate to the frontend directory:
+
+  ```bash
+  cd dashboard
+  ```
+- Install project dependencies:
+  ```
+  npm install
+  ```
+- Start the development server:
+  ```
+  npm run dev  
+  ```
+  This will launch the frontend at port 5173 (localhost).  
+
+- **Note - If in case any dependencies are missing, which causes components not to render in frontend, just use**
+  ```
+  npm install <dependency_name>
+  ```
+
+  
+
+
 
 
 
