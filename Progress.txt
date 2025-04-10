@@ -1,0 +1,52 @@
+***********************************************************
+INNOWELL ASSESSMENT - 2  
+PROJECT                : REAL-TIME POWER DASHBOARD  
+DATE OF SUBMISSION     : 10-04-2025  
+TOOLS USED             : React.js, MongoDB, Spring Boot  
+VERSION                : 0.0  
+***********************************************************
+
+PROJECT OVERVIEW:
+*****************
+The *Real-Time Power Dashboard* is a full-stack application built to visualize live electrical data including 
+voltage, current, frequency, power factor, energy consumption, and GHG emissions. The system is designed to 
+ingest data every 10 seconds and display it through interactive, real-time graphs.
+
+PROGRESS SUMMARY:
+*****************
+1. A fully functional base project has been set up, with both the React.js frontend and Spring Boot backend 
+   working seamlessly.
+
+2. The backend receives live sensor data every 10 seconds, which is stored in MongoDB under the collection 
+   `mqtt_messages` in the `mqttdata` document.
+
+3. A WebSocket endpoint on port 8080 broadcasts live data to all connected clients, enabling real-time updates
+   in the frontend without polling.
+
+4. The frontend graphs for Voltage, Current, Frequency, Power Factor, Energy Consumption, and GHG Emissions 
+   are successfully rendering in real time using WebSocket data (updated every 10 seconds).
+
+5. Graph components are designed to load the latest 100 historical records from MongoDB on startup and then 
+   append live data dynamically as it arrives.
+
+6. An `ExpenseTracker` component is implemented to monitor daily, monthly, and yearly energy usage and cost. 
+   It utilizes backend-generated delta values, computed from live data streams, to provide accurate and 
+   up-to-date consumption metrics.
+
+7. Device-specific data persistence is implemented on the frontend, ensuring that user sessions and visualizations
+   remain consistent across devices.
+
+FUTURE TASK:
+************
+1. Integrate time-based filtering (minute, hourly, daily, monthly, and yearly) in the frontend using the 
+   `TimeModeSelector` component.
+
+2. Extend the backend logic to support time-based data aggregation for each metric, allowing historical data to 
+   be viewed across various time ranges.
+
+PROBLEMS FACED:
+***************
+1. Not able to find out the logic correctly that can render time-based data aggregation for each metric.
+
+2. Not able to capture enough data in these days via MongoDB due to technical issues.
+
