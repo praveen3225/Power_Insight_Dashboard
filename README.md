@@ -40,6 +40,8 @@ Power_Insight_Dashboard/
  - screenshots/  
  - progress.txt  
 
+ ---
+
 ## 🛠️ Setup Instructions
 
 ### Download and Extract the Project
@@ -79,6 +81,8 @@ Power_Insight_Dashboard/
   ```
   npm install <dependency_name>
   ```
+  
+  
 
   
 
